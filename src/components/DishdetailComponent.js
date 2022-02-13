@@ -9,9 +9,9 @@ class Dishdetail extends Component {
     renderDish(dish) {
         if (dish != null) {
             return (
-                <div className="col-12 m-1">
+                <div className="col-12 col-5 m-1">
                     <div className="row">
-                        <div className="col-5 col-md-5 p-1">
+                        <div className="col-6 col-md-4 p-1">
                             <Card>
                                 <CardImg width="100%" src={dish.image} alt={dish.name} />
                                 <CardBody>
@@ -20,7 +20,7 @@ class Dishdetail extends Component {
                                 </CardBody>
                             </Card>
                         </div>
-                        <div className="col-5 col-md-5 p-1">
+                        <div className="col-6 col-md-4 p-1">
                             <Card>
                                 <h4>Comments</h4>
                                 {dish.comments.map((cmt) => {
