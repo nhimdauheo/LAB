@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardBody, CardTitle, CardText } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Navbar } from "reactstrap";
 import dateFormat from "dateformat"
+import { Link } from 'react-router-dom'
 
 class Dishdetail extends Component {
     constructor(props) {
         super(props)
     }
-    renderDish(dish) {
+    renderDish = () => {
+        const {dish, comments} = this.props;
         if (dish != null) {
             return (
                 <div className="container">
@@ -25,7 +27,7 @@ class Dishdetail extends Component {
                                 <div className="col-5 col-5 m-1">
                                     <Card>
                                         <h4>Comments</h4>
-                                        {dish.comments.map((cmt) => {
+                                        {comments.map((cmt) => {
                                             return (
                                                 <CardBody>
                                                     <CardText>{cmt.comment}</CardText>
@@ -47,7 +49,24 @@ class Dishdetail extends Component {
         }
     }
     render() {
-        return this.renderDish(this.props.dish);
+        console.log(this.props)
+        return (
+            <>
+                <div className="container">
+                    <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{this.props.dish.name}</h3>
+                            <hr />
+                        </div>
+                    </div>
+                    {this.renderDish()}
+                </div>
+            </>
+        );
     }
 }
 
