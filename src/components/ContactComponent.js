@@ -35,16 +35,19 @@ class Contact extends Component {
             [name]: value
         })
     }
+
     handleSubmit(event) {
         console.log("Current state is: " + JSON.stringify(this.state));
         alert("Current state is: " + JSON.stringify(this.state));
         event.preventDefault();
     }
+
     handleBlur = (field) => (evt) => {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
         });
     }
+
     validate(firstname, lastname, telnum, email) {
         const error = {
             firstname: '',
@@ -72,6 +75,7 @@ class Contact extends Component {
 
         return error;
     }
+
     render() {
         const error = this.validate(this.state.firstname, this.state.lastname, this.state.telnum, this.state.email);
         return (
