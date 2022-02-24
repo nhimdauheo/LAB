@@ -44,6 +44,7 @@ class Contact extends Component {
         this.setState({
             touched: { ...this.state.touched, [field]: true }
         });
+        console.log(field)
     }
     validate(firstname, lastname, telnum, email) {
         const error = {
@@ -127,10 +128,11 @@ class Contact extends Component {
                                         invalid={error.firstname !== ''}
                                         onBlur={this.handleBlur('firstname')}
                                         onChange={this.handleInputChange} />
+                                    <FormFeedback>
+                                        {error.firstname}
+                                    </FormFeedback>
                                 </Col>
-                                <FormFeedback>
-                                    {error.firstname}
-                                </FormFeedback>
+
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="lastname" md={2} >Last Name:</Label>
@@ -141,10 +143,11 @@ class Contact extends Component {
                                         invalid={error.lastname !== ''}
                                         onBlur={this.handleBlur('lastname')}
                                         onChange={this.handleInputChange} />
+                                    <FormFeedback>
+                                        {error.lastname}
+                                    </FormFeedback>
                                 </Col>
-                                <FormFeedback>
-                                    {error.lastname}
-                                </FormFeedback>
+
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="telnum" md={2} >Contact Tel.</Label>
@@ -155,10 +158,11 @@ class Contact extends Component {
                                         invalid={error.telnum !== ''}
                                         onBlur={this.handleBlur('telnum')}
                                         onChange={this.handleInputChange} />
+                                    <FormFeedback>
+                                        {error.telnum}
+                                    </FormFeedback>
                                 </Col>
-                                <FormFeedback>
-                                    {error.telnum}
-                                </FormFeedback>
+
                             </FormGroup>
                             <FormGroup row>
                                 <Label htmlFor="email" md={2} >Email</Label>
@@ -169,10 +173,11 @@ class Contact extends Component {
                                         invalid={error.email !== ''}
                                         onBlur={this.handleBlur('email')}
                                         onChange={this.handleInputChange} />
+                                    <FormFeedback>
+                                        {error.email}
+                                    </FormFeedback>
                                 </Col>
-                                <FormFeedback>
-                                    {error.email}
-                                </FormFeedback>
+
                             </FormGroup>
                             <FormGroup row>
                                 <Col md={{ size: 6, offset: 2 }}>
