@@ -55,7 +55,7 @@ class Dishdetail extends Component {
                 <div className="container">
                     <div className="row">
                         <Breadcrumb>
-                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem><Link to="/menu">Home / Menu</Link></BreadcrumbItem>
                             <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
                         </Breadcrumb>
                         <div className="col-12">
