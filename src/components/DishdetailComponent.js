@@ -54,7 +54,7 @@ class Dishdetail extends Component {
                                         )
                                     })}
                                     <Button outline onClick={this.toggleModel}>
-                                        <span className="fa fa-sign-in fa-lg"> Submit Contents</span>
+                                        <span className="fa fa-pencil fa-lg"> Submit Contents</span>
                                     </Button>
                                     <Modal isOpen={this.state.isModelOpen} toggle={this.toggleModel}>
                                         <ModalHeader toggle={this.toggleModel}>Submit Contents</ModalHeader>
@@ -64,7 +64,7 @@ class Dishdetail extends Component {
                                                     <Label htmlFor="rating">Rating:</Label>
                                                     <Col>
                                                         <Control.select model=".rating" name="rating"
-                                                            className="form-control" >\
+                                                            className="form-control" >
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -79,7 +79,7 @@ class Dishdetail extends Component {
                                                         <Control.text model=".yourname" id="yourname" name="yourname" placeholder="Yours Name" 
                                                             className="form-control"
                                                             validators={{
-                                                                required, minLength: minLength(3), maxLength: maxLength(3)
+                                                                required, minLength: minLength(3), maxLength: maxLength(15)
 
                                                             }}
                                                         />
