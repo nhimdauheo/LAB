@@ -74,16 +74,16 @@ class Dishdetail extends Component {
                                                     </Col>
                                                 </FormGroup>
                                                 <FormGroup>
-                                                    <Label HtmlFor="yourname" >Yours Name:</Label>
+                                                    <Label HtmlFor="author" >Yours Name:</Label>
                                                     <Col>
-                                                        <Control.text model=".yourname" id="yourname" name="yourname" placeholder="Yours Name" 
+                                                        <Control.text model=".author" id="author" name="author" placeholder="Yours Name" 
                                                             className="form-control"
                                                             validators={{
                                                                 required, minLength: minLength(3), maxLength: maxLength(15)
 
                                                             }}
                                                         />
-                                                        <Errors className="text-danger" model=".yourname" show="touched"
+                                                        <Errors className="text-danger" model=".author" show="touched"
                                                             messages={{
                                                                 required: 'Required',
                                                                 minLength: 'Must be greater than 2 characters',
