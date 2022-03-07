@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Modal, ModalHeader, ModalBody, FormGroup, Label, Button, Col } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, 
+    BreadcrumbItem, Modal, ModalHeader, ModalBody, FormGroup, Label, Button, Col } from "reactstrap";
 import dateFormat from "dateformat"
 import { Link } from 'react-router-dom'
 import { Control, LocalForm, Errors } from 'react-redux-form'
@@ -8,11 +9,14 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len)
 const minLength = (len) => (val) => (val) && (val.length >= len)
 
+
+
 class Dishdetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isModelOpen: false
+            isModelOpen: false,
+            
         }
         this.toggleModel = this.toggleModel.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,11 +27,12 @@ class Dishdetail extends Component {
         })
     }
     handleSubmit(values) {
-        console.log("Current state is: " + JSON.stringify(values));
-        alert("Current state is: " + JSON.stringify(values));
+        this.toggleModel()
+        this.props.addComment(this.props.dish.id, values.rating, values.author, values.comment)
+        console.log(values)
     }
     renderDish = () => {
-        const { dish, comments } = this.props;
+        const { dish, comments, dishId } = this.props;
         if (dish != null) {
             return (
                 <div className="container">
@@ -92,13 +97,13 @@ class Dishdetail extends Component {
                                                     </Col>
                                                 </FormGroup>
                                                 <FormGroup >
-                                                    <Label htmlFor="cm" >Comment</Label>
+                                                    <Label htmlFor="comment" >Comment</Label>
                                                     <Col >
-                                                        <Control.textarea model=".cm" id="cm" name="cm" rows="10"
+                                                        <Control.textarea model=".comment" id="comment" name="comment" rows="10"
                                                             className="form-control" />
                                                     </Col>
                                                 </FormGroup>
-                                                <Button type="submit" value="submit" className="bg-primary">Submit</Button>
+                                                <Button type="submit" value="submit" className="bg-primary" >Submit</Button>
                                             </LocalForm>
                                         </ModalBody>
                                     </Modal>
