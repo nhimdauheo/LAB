@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb, 
-    BreadcrumbItem, Modal, ModalHeader, ModalBody, FormGroup, Label, Button, Col } from "reactstrap";
+import {
+    Card, CardImg, CardBody, CardTitle, CardText, Breadcrumb,
+    BreadcrumbItem, Modal, ModalHeader, ModalBody, FormGroup, Label, Button, Col
+} from "reactstrap";
 import dateFormat from "dateformat"
 import { Link } from 'react-router-dom'
 import { Control, LocalForm, Errors } from 'react-redux-form'
+import { Loading } from './LoadingComponents'
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len)
@@ -16,7 +19,7 @@ class Dishdetail extends Component {
         super(props)
         this.state = {
             isModelOpen: false,
-            
+
         }
         this.toggleModel = this.toggleModel.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -32,7 +35,7 @@ class Dishdetail extends Component {
         console.log(values)
     }
     renderDish = () => {
-        const { dish, comments, dishId } = this.props;
+        const { dish, comments } = this.props;
         if (dish != null) {
             return (
                 <div className="container">
@@ -81,7 +84,7 @@ class Dishdetail extends Component {
                                                 <FormGroup>
                                                     <Label HtmlFor="author" >Yours Name:</Label>
                                                     <Col>
-                                                        <Control.text model=".author" id="author" name="author" placeholder="Yours Name" 
+                                                        <Control.text model=".author" id="author" name="author" placeholder="Yours Name"
                                                             className="form-control"
                                                             validators={{
                                                                 required, minLength: minLength(3), maxLength: maxLength(15)
@@ -120,24 +123,42 @@ class Dishdetail extends Component {
         }
     }
     render() {
-        console.log(this.props)
-        return (
-            <>
+        if (this.props.isLoading) {
+            return (
                 <div className="container">
                     <div className="row">
-                        <Breadcrumb>
-                            <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                            <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
-                        </Breadcrumb>
-                        <div className="col-12">
-                            <h3>{this.props.dish.name}</h3>
-                            <hr />
-                        </div>
+                        <Loading />
                     </div>
-                    {this.renderDish()}
                 </div>
-            </>
-        );
+            )
+        }
+        else if (this.props.errMess) {
+            return (
+                <div className="container">
+                    <div className="row">
+                        <h4>{this.props.errMess}</h4>
+                    </div>
+                </div>
+            )
+        }
+        else
+            return (
+                <>
+                    <div className="container">
+                        <div className="row">
+                            <Breadcrumb>
+                                <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                                <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+                            </Breadcrumb>
+                            <div className="col-12">
+                                <h3>{this.props.dish.name}</h3>
+                                <hr />
+                            </div>
+                        </div>
+                        {this.renderDish()}
+                    </div>
+                </>
+            );
     }
 }
 
