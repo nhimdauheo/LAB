@@ -33,7 +33,7 @@ class Dishdetail extends Component {
     }
     handleSubmit(values) {
         this.toggleModel()
-        this.props.addComment(this.props.dish.id, values.rating, values.author, values.comment)
+        this.props.postComment(this.props.dish.id, values.rating, values.author, values.comment)
         console.log(values)
     }
     renderDish = () => {
