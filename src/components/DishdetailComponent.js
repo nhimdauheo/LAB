@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { Control, LocalForm, Errors } from 'react-redux-form'
 import { Loading } from './LoadingComponents'
 import { baseUrl } from '../shared/baseUrl'
+import { FadeTransform, Fade, Stagger } from 'react-animation-components'
 
 
 const required = (val) => val && val.length;
@@ -45,24 +46,33 @@ class Dishdetail extends Component {
                         <div className="col-12 col-5 m-1">
                             <div className="row">
                                 <div className="col-4 col-4 m-1">
-                                    <Card>
-                                        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
-                                        <CardBody>
-                                            <CardTitle>{dish.name}</CardTitle>
-                                            <CardText>{dish.description}</CardText>
-                                        </CardBody>
-                                    </Card>
+                                    <FadeTransform in
+                                        transformProps={{
+                                            exitTransform: 'scale(0.5) tranlateY(-50%)'
+                                        }} >
+                                        <Card>
+                                            <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
+                                            <CardBody>
+                                                <CardTitle>{dish.name}</CardTitle>
+                                                <CardText>{dish.description}</CardText>
+                                            </CardBody>
+                                        </Card>
+                                    </FadeTransform>
                                 </div>
                                 <div className="col-6 col-6 m-1">
                                     <h4>Comments</h4>
-                                    {comments.map((cmt) => {
-                                        return (
-                                            <CardBody>
-                                                <CardText>{cmt.comment}</CardText>
-                                                <CardText>--{cmt.author}, {dateFormat(new Date(cmt.date), "mmm d, yyyy")}</CardText>
-                                            </CardBody>
-                                        )
-                                    })}
+                                    <Stagger in>
+                                        {comments.map((cmt) => {
+                                            return (
+                                                <Fade in>
+                                                    <CardBody>
+                                                        <CardText>{cmt.comment}</CardText>
+                                                        <CardText>--{cmt.author}, {dateFormat(new Date(cmt.date), "mmm d, yyyy")}</CardText>
+                                                    </CardBody>
+                                                </Fade>
+                                            )
+                                        })}
+                                    </Stagger>
                                     <Button outline onClick={this.toggleModel}>
                                         <span className="fa fa-pencil fa-lg"> Submit Contents</span>
                                     </Button>
